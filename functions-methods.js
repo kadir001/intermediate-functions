@@ -9,8 +9,10 @@
 // getEmailDomain("t.mellink@novi.nl") geeft novi.nl
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
 
-
-
+function getEmailDomain(email){
+    return email.split("@")[1];
+}
+console.log(getEmailDomain('kadir_akdemir@live.nl'));
 
 /* Opdracht  2 */
 // Schrijf een functie genaamd typeOfEmail, die een emailadres verwacht. De functie checkt of het emailadres een novi domein heeft (medewerker), een novi-education domein (student), of extern domein (zoals gmail of outlook)
@@ -20,6 +22,15 @@
 // typeOfEmail("novi.nlaapjesk@outlook.com") geeft geeft "Extern" <-- deze moet het ook doen!
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
 
+function typeOfEmail(email){
+if (email.split("@")[1] === 'novi-education.nl'){ return('student')}
+else if
+(email.split("@")[1] === 'novi.nl'){ return('medewerker');}else{
+  return('Extern');}
+
+}
+
+console.log(typeOfEmail('ik@novi.nl'));
 
 
 /* Opdracht  3 */
@@ -34,3 +45,33 @@
 // checkEmailValidity("n.eekenanovi.nl") geeft false - want geen @
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
+
+function checkEmailValidity(email) {
+    if (typeof email !== "string") {
+        return false;
+    }
+
+    const parts = email.split("@");
+
+    if (parts.length !== 2 || !parts[0] || !parts[1]) {
+        return false;
+    }
+
+    const domain = parts[1];
+
+    if (!domain.includes(".")) {
+        return false;
+    }
+
+    return true;
+}
+
+console.log(checkEmailValidity("kadir@gmail.com"));
+// "gmail.com"
+
+console.log(checkEmailValidity("kadir"));
+// null
+
+console.log(checkEmailValidity("kadir@gmail"));
+// null
+
