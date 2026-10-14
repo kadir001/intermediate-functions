@@ -12,7 +12,14 @@
 function getEmailDomain(email){
     return email.split("@")[1];
 }
-console.log(getEmailDomain('kadir_akdemir@live.nl'));
+console.log(getEmailDomain("n.eeken@novi-education.nl"));
+// Verwacht: novi-education.nl
+
+console.log(getEmailDomain("t.mellink@novi.nl"));
+// Verwacht: novi.nl
+
+console.log(getEmailDomain("a.wiersma@outlook.com"));
+// Verwacht: outlook.com
 
 /* Opdracht  2 */
 // Schrijf een functie genaamd typeOfEmail, die een emailadres verwacht. De functie checkt of het emailadres een novi domein heeft (medewerker), een novi-education domein (student), of extern domein (zoals gmail of outlook)
@@ -23,14 +30,24 @@ console.log(getEmailDomain('kadir_akdemir@live.nl'));
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
 
 function typeOfEmail(email){
-if (email.split("@")[1] === 'novi-education.nl'){ return('student')}
+if (email.split("@")[1] === 'novi-education.nl'){ return('Student')}
 else if
-(email.split("@")[1] === 'novi.nl'){ return('medewerker');}else{
+(email.split("@")[1] === 'novi.nl'){ return('Medewerker');}else{
   return('Extern');}
 
 }
 
-console.log(typeOfEmail('ik@novi.nl'));
+console.log(typeOfEmail("n.eeken@novi-education.nl"));
+// Verwacht: Student
+
+console.log(typeOfEmail("t.mellink@novi.nl"));
+// Verwacht: Medewerker
+
+console.log(typeOfEmail("novi.nlaapjesk@outlook.com"));
+// Verwacht: Extern
+
+console.log(typeOfEmail("a.wiersma@outlook.com"));
+// Verwacht: Extern
 
 
 /* Opdracht  3 */
@@ -57,21 +74,32 @@ function checkEmailValidity(email) {
         return false;
     }
 
-    const domain = parts[1];
+    if (email.includes(",")) {
+        return false;
+    }
 
-    if (!domain.includes(".")) {
+    if (email.endsWith(".")) {
+        return false;
+    }
+
+    if (!parts[1].includes(".")) {
         return false;
     }
 
     return true;
 }
 
-console.log(checkEmailValidity("kadir@gmail.com"));
-// "gmail.com"
+console.log(checkEmailValidity("n.eeken@novi.nl"));
+// Verwacht: true
 
-console.log(checkEmailValidity("kadir"));
-// null
+console.log(checkEmailValidity("tessmellink@novi.nl"));
+// Verwacht: true
 
-console.log(checkEmailValidity("kadir@gmail"));
-// null
+console.log(checkEmailValidity("n.eekenanovi.nl"));
+// Verwacht: false
 
+console.log(checkEmailValidity("n.eeken@novinl."));
+// Verwacht: false
+
+console.log(checkEmailValidity("tessmellink@novi,nl"));
+// Verwacht: false
